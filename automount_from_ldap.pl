@@ -28,6 +28,7 @@ sub search_map($$$$) {
 	if ($mesg->count > 0) {
 		foreach my $entry ($mesg->entries) {
 			my $key = $entry->get_value('automountKey');
+			$key =~ s/^\///;
 			my $information = $entry->get_value('automountInformation');
 			# check to see if this key points to another map (-fstype=autofs) or -fstype isn't specified (most likely another map)
 			if ($information =~ /.*-fstype=autofs.+/ or $information !~ /.*-fstype.+/) {
